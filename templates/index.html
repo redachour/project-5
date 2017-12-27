@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_tags %}
+
+{% block content %}
+    <div class="container">
+        <div class="entry-list">
+            <h1>Entries</h1>
+            {% if entries %}
+                {% for entry in entries %}
+                    <article>
+                        <h2><a href="{{ url_for('detail', slug=entry.slug) }}">{{ entry.title }}</a></h2>
+                        <time datetime="{{ entry.date }}">{{ entry.date }}</time>
+                        <div class='tag-list'>{{ render_tags(entry.tags) }}</div>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <p>No Entries Yet</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
